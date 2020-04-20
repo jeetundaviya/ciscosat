@@ -18,7 +18,7 @@ class _UserUpdateWorkState extends State<UserUpdateWork> {
         centerTitle: true,
         backgroundColor: Colors.grey,
         title: Text(
-          'UPDATE MANUALLY',
+          'MANUAL UPDATE',
           style: GoogleFonts.francoisOne(
             fontSize: 40,
           ),

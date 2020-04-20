@@ -51,7 +51,7 @@ class _userMenuState extends State<userMenu> {
                 child: FloatingActionButton.extended(
                   onPressed: () async {
                     await FirebaseAuth.instance.signOut();
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/');
                   },
                   backgroundColor: Colors.grey[800],
                   icon: Icon(Icons.exit_to_app),

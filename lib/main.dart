@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        // '/':(context)=>SplashScreen(),
-        '/': (context) => UserUpdateWork(),
+        '/': (context) => SplashScreen(),
+        //   '/': (context) => UserUpdateWork(),
         '/userupdateWork': (context) => UserUpdateWork(),
         '/usermaproute': (context) => UsersMapRoute(),
         '/userassignedWork': (context) => usersAssignedWork(),

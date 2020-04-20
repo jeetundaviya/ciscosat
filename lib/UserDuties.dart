@@ -46,7 +46,7 @@ class _UserDutiesState extends State<UserDuties> {
                 width: 150,
                 child: FloatingActionButton.extended(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/MainMenu');
+                    Navigator.pushNamed(context, '/userMenu');
                   },
                   backgroundColor: Colors.grey[800],
                   icon: Icon(Icons.exit_to_app),
@@ -66,7 +66,7 @@ class _UserDutiesState extends State<UserDuties> {
   Container mydutiesoptions(
       BuildContext context, String Title, String GotoPath) {
     return Container(
-      width: 250,
+      width: 300,
       decoration: BoxDecoration(
         border: Border.all(width: 5, color: Colors.grey[400]),
         borderRadius: BorderRadius.all(
