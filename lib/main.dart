@@ -1,3 +1,7 @@
+import 'package:ciscosat/AddDriver.dart';
+import 'package:ciscosat/AssignDriver.dart';
+import 'package:ciscosat/Locate_routes_onmaps.dart';
+import 'package:ciscosat/complains.dart';
 import 'package:ciscosat/modify_floor.dart';
 import 'package:ciscosat/reports.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +23,7 @@ import 'LiveUpdatesMenu.dart';
 import 'UpdatedFloor.dart';
 import 'UpdatedArea.dart';
 import 'UpdatedDustbin.dart';
+import 'complains.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,20 +36,25 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-//          '/':(context)=>SplashScreen(),
-        '/': (context) => remarks(),
-        '/menu': (context) => menu(),
+        //        '/':(context)=>SplashScreen(),
+        '/': (context) => MainMenu(),
+        '/menu': (context) => MainMenu(),
         '/login': (context) => login(),
         '/remarks': (context) => remarks(),
+        '/reports': (context) => Reports(),
         '/support': (context) => support(),
         '/area': (context) => areas(),
         '/floor': (context) => floors(),
+        '/adddriver': (context) => addDriver(),
+        '/locateonmaps': (context) => LocateOnMaps(),
+        '/assigndriver': (context) => AssignDrivers(),
+        '/complains': (context) => Complains(),
         '/modifymenu': (context) => modify(),
         '/marea': (context) => modifyArea(),
         '/mfloor': (context) => modifyFloor(),
         '/mdustbin': (context) => modifyDustbin(),
         '/dustbin': (context) => dustbins(),
-        '/AfterLogin': (context) => AfterMenu(),
+        '/LiveLogin': (context) => LiveMenu(),
         '/UpdatedArea': (context) => updatedarea(),
         '/UpdatedFloor': (context) => updatedfloor(),
         '/UpdatedDustbin': (context) => updateddustbin(),

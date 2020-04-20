@@ -29,7 +29,7 @@ class _supportState extends State<support> {
               SizedBox(
                 height: 170,
               ),
-              remark(
+              support(
                   Icon(
                     Icons.mail,
                     color: Colors.grey[800],
@@ -37,7 +37,7 @@ class _supportState extends State<support> {
                   'Mail us ',
                   'Mail us at',
                   ' help@ciscosat.com                    (we will get back to you within 48 hours) '),
-              remark(
+              support(
                   Icon(
                     Icons.call,
                     color: Colors.grey[800],
@@ -45,7 +45,7 @@ class _supportState extends State<support> {
                   'Call us ',
                   'Call us on',
                   'Tollfree no. 8888xxxxxx                                          (27X7)'),
-              remark(
+              support(
                   Icon(
                     Icons.chat,
                     color: Colors.grey[800],
@@ -53,7 +53,7 @@ class _supportState extends State<support> {
                   'Chat with bot',
                   'Chat with bot',
                   'Sorry bot is underconstruction Still you can                                       Mail us or Call us '),
-              remark(
+              support(
                   Icon(
                     Icons.account_circle,
                     color: Colors.grey[800],
@@ -61,7 +61,7 @@ class _supportState extends State<support> {
                   'Credits',
                   'Credits',
                   '*Dhruvkumar Dholakiya           *Tanmay Kshirsagar                 *Jeet Undaviya                                 *Kevin Khunt                            *Jaykumar Kadiwala            *Vandita Chapadia'),
-              remark(
+              support(
                   Icon(
                     Icons.timelapse,
                     color: Colors.grey[800],
@@ -76,7 +76,7 @@ class _supportState extends State<support> {
     );
   }
 
-  Column remark(Icon icon, String location, String Title, String Desc) {
+  Column support(Icon icon, String location, String Title, String Desc) {
     return Column(
       children: <Widget>[
         FloatingActionButton.extended(

@@ -31,11 +31,11 @@ class _StarterState extends State<Starter> {
             FloatingActionButton.extended(
               backgroundColor: Colors.grey,
               onPressed: () {
-                Navigator.pushNamed(context, '/menu');
+                Navigator.pushNamed(context, '/login');
               },
               icon: Icon(Icons.menu),
               label: Text(
-                'GO TO MENU',
+                'L O G I N',
                 style: GoogleFonts.francoisOne(fontSize: 30),
               ),
             ),

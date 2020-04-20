@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class modifyFloor extends StatefulWidget {
+class addDriver extends StatefulWidget {
   @override
-  _modifyFloorState createState() => _modifyFloorState();
+  _addDriverState createState() => _addDriverState();
 }
 
-String _floorno, _floorvalue;
+String _driverNo, _driverName;
 
-class _modifyFloorState extends State<modifyFloor> {
+class _addDriverState extends State<addDriver> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +19,7 @@ class _modifyFloorState extends State<modifyFloor> {
         centerTitle: true,
         backgroundColor: Colors.grey,
         title: Text(
-          'M . F L O O R',
+          'A D D D R I V E R',
           style: GoogleFonts.francoisOne(
             fontSize: 40,
           ),
@@ -29,7 +30,15 @@ class _modifyFloorState extends State<modifyFloor> {
           Column(
             children: <Widget>[
               SizedBox(
-                height: 150,
+                height: 50,
+              ),
+              Icon(
+                Icons.airport_shuttle,
+                color: Colors.grey[800],
+                size: 150,
+              ),
+              SizedBox(
+                height: 50,
               ),
 
               TextField(
@@ -37,12 +46,12 @@ class _modifyFloorState extends State<modifyFloor> {
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey[600], width: 6),
                   ),
-                  hintText: 'Floor no.',
+                  hintText: 'ID no.',
                   // helperText: 'Keep it short, this is just a demo.',
-                  labelText: 'Floor no.',
+                  labelText: 'ID no.',
 
                   prefixIcon: Icon(
-                    Icons.radio_button_checked,
+                    Icons.account_circle,
                     color: Colors.grey[800],
                     size: 120,
                   ),
@@ -51,8 +60,8 @@ class _modifyFloorState extends State<modifyFloor> {
                   //suffixStyle: const TextStyle(color: Colors.green)
                 ),
                 onChanged: (value) {
-                  _floorno = value;
-                  print(_floorno);
+                  _driverNo = value;
+                  print(_driverNo);
                 },
                 //autovalidate: true,
               ),
@@ -66,12 +75,12 @@ class _modifyFloorState extends State<modifyFloor> {
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey[600], width: 6),
                   ),
-                  hintText: 'Floor percentage',
+                  hintText: 'Driver Details',
                   // helperText: 'Keep it short, this is just a demo.',
-                  labelText: 'Floor percentage',
+                  labelText: 'Driver Details',
 
                   prefixIcon: Icon(
-                    Icons.mode_edit,
+                    Icons.assignment,
                     color: Colors.grey[800],
                     size: 120,
                   ),
@@ -80,8 +89,8 @@ class _modifyFloorState extends State<modifyFloor> {
                   //suffixStyle: const TextStyle(color: Colors.green)
                 ),
                 onChanged: (value) {
-                  _floorvalue = value;
-                  print(_floorvalue);
+                  _driverName = value;
+                  print(_driverName);
                 },
                 //autovalidate: true,
               ),
@@ -90,16 +99,16 @@ class _modifyFloorState extends State<modifyFloor> {
                 height: 100,
               ),
               FloatingActionButton.extended(
-                heroTag: null,
+                // heroTag: null,
                 backgroundColor: Colors.grey[800],
                 onPressed: () async {
-                  print('$_floorno::$_floorvalue');
+                  print('$_driverNo::$_driverName');
                   await Firestore.instance
-                      .collection('FLOORS')
-                      .document('$_floorno')
+                      .collection('DRIVERS')
+                      .document('$_driverNo')
                       .setData({
-                    'FNO': '$_floorno',
-                    'FVALUE': '$_floorvalue'
+                    'IDNO': '$_driverNo',
+                    'DDETAILS': '$_driverName'
                   }).catchError((e) {
                     print(e);
                   });
@@ -113,32 +122,15 @@ class _modifyFloorState extends State<modifyFloor> {
               SizedBox(
                 height: 50,
               ),
-              FloatingActionButton.extended(
-                heroTag: null,
-                backgroundColor: Colors.grey[800],
-                onPressed: () async {
-                  print('$_floorno::$_floorvalue');
-                  await Firestore.instance
-                      .collection('FLOORS')
-                      .document('$_floorno')
-                      .delete().catchError((e) {
-                    print(e);
-                  });
-                },
-                icon: Icon(Icons.indeterminate_check_box),
-                label: Text(
-                  ' D E L E T E ',
-                  style: GoogleFonts.francoisOne(fontSize: 30),
-                ),
-              ),
+
 //              FloatingActionButton.extended(
 //                heroTag: null,
 //                backgroundColor: Colors.grey[800],
 //                onPressed: ()async{print('$_areano::$_areavalue');
-//                await Firestore.instance.collection('FLOORS').document('$_areano').updateData({
-//                  'FNO':'$_areano',
-//                  'FVALUE':'$_areavalue'
-//                }).catchError((e){print(e);});
+//      await Firestore.instance.collection('AREAS').document('$_areano').updateData({
+//        'ANO':'$_areano',
+//        'AVALUE':'$_areavalue'
+//      }).catchError((e){print(e);});
 //                },
 //                icon: Icon(Icons.autorenew),
 //                label: Text(

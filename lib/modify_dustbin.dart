@@ -90,7 +90,7 @@ class _modifyDustbinState extends State<modifyDustbin> {
                 height: 100,
               ),
               FloatingActionButton.extended(
-                // heroTag: null,
+                heroTag: null,
                 backgroundColor: Colors.grey[800],
                 onPressed: () async {
                   print('$_dustbinno::$_dustbinvalue');
@@ -700,6 +700,24 @@ class _modifyDustbinState extends State<modifyDustbin> {
               ),
               SizedBox(
                 height: 50,
+              ),
+              FloatingActionButton.extended(
+                heroTag: null,
+                backgroundColor: Colors.grey[800],
+                onPressed: () async {
+                  //print('$_areano::$_areavalue');
+                  await Firestore.instance
+                      .collection('DUSTBINS')
+                      .document('$_dustbinno')
+                      .delete().catchError((e) {
+                    print(e);
+                  });
+                },
+                icon: Icon(Icons.indeterminate_check_box),
+                label: Text(
+                  ' D E L E T E ',
+                  style: GoogleFonts.francoisOne(fontSize: 30),
+                ),
               ),
 //              FloatingActionButton.extended(
 //                heroTag: null,

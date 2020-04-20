@@ -3,12 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AfterMenu extends StatefulWidget {
+class LiveMenu extends StatefulWidget {
   @override
-  _AfterMenuState createState() => _AfterMenuState();
+  _LiveMenuState createState() => _LiveMenuState();
 }
 
-class _AfterMenuState extends State<AfterMenu> {
+class _LiveMenuState extends State<LiveMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
