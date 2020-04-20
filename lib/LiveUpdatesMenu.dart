@@ -30,26 +30,31 @@ class _LiveMenuState extends State<LiveMenu> {
               SizedBox(
                 height: 200,
               ),
-              AfterMenuOptions(context, 'A R E A S', 'UpdatedArea'),
+              LiveUpdatesMenuOptions(context, 'A R E A S', 'UpdatedArea'),
               SizedBox(
                 height: 50,
               ),
-              AfterMenuOptions(context, 'F L O O R S', 'UpdatedFloor'),
+              LiveUpdatesMenuOptions(context, 'F L O O R S', 'UpdatedFloor'),
               SizedBox(
                 height: 50,
               ),
-              AfterMenuOptions(context, 'D U S T B I N S', 'UpdatedDustbin'),
+              LiveUpdatesMenuOptions(
+                  context, 'D U S T B I N S', 'UpdatedDustbin'),
               SizedBox(
-                height: 50,
+                height: 150,
               ),
-              FloatingActionButton.extended(
+              Container(
+                height: 50,
+                width: 150,
+                child: FloatingActionButton.extended(
                   onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/MainMenu');
                   },
-                  backgroundColor: Colors.black26,
+                  backgroundColor: Colors.grey[800],
                   icon: Icon(Icons.exit_to_app),
-                  label: Text('L O G O U T'))
+                  label: Text('GO BACK',
+                      style: GoogleFonts.francoisOne(fontSize: 20,)),),
+              )
             ],
           ),
         ],
@@ -57,14 +62,16 @@ class _LiveMenuState extends State<LiveMenu> {
     );
   }
 
-  Container AfterMenuOptions(
+  Container LiveUpdatesMenuOptions(
       BuildContext context, String Title, String GotoPath) {
     return Container(
+      width: 250,
+
       decoration: BoxDecoration(
         border: Border.all(width: 5, color: Colors.black26),
         borderRadius: BorderRadius.all(
             Radius.circular(25.0) //         <--- border radius here
-            ),
+        ),
       ),
       child: RawMaterialButton(
         onPressed: () {

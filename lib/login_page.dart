@@ -52,7 +52,7 @@ class _loginState extends State<login> {
                     Column(
                       children: <Widget>[
                         TextFormField(
-                          validator: validateEmail,
+//                          validator: validateEmail,
 //                          onSaved: (String val) {
 //                            _email = val;
 //                          },
@@ -85,7 +85,7 @@ class _loginState extends State<login> {
                         ),
                         TextFormField(
                           autovalidate: true,
-                          validator: validatePassword,
+//                          validator: validatePassword,
 //                          onSaved: (String val) {
 //                            _password = val;
 //                          },
@@ -125,8 +125,12 @@ class _loginState extends State<login> {
                                     await _auth.signInWithEmailAndPassword(
                                         email: _email, password: _password);
                                 user = check_user.user;
-                                if (user != null)
-                                  Navigator.pushNamed(context, '/AfterLogin');
+                                if (user.uid ==
+                                    'yJPXcwEoQ2WETO6nwW0yziR33Bk1') //admin
+                                  Navigator.pushNamed(context, '/MainMenu');
+                                if (user.uid !=
+                                    'yJPXcwEoQ2WETO6nwW0yziR33Bk1') //non-admin
+                                  Navigator.pushNamed(context, '/userMenu');
                               } catch (e) {
                                 print(e);
                                 return showDialog<Null>(
@@ -158,20 +162,20 @@ class _loginState extends State<login> {
   }
 }
 
-String validatePassword(String value) {
-// Indian Mobile number are of 10 digit only
-  if (value.length < 6)
-    return 'Password should at least be of 6 digit';
-  else
-    return null;
-}
-
-String validateEmail(String value) {
-  Pattern pattern =
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  RegExp regex = new RegExp(pattern);
-  if (!regex.hasMatch(value))
-    return 'Enter Valid Email';
-  else
-    return null;
-}
+//String validatePassword(String value) {
+//// Indian Mobile number are of 10 digit only
+//  if (value.length < 6)
+//    return 'Password should at least be of 6 digit';
+//  else
+//    return null;
+//}
+//
+//String validateEmail(String value) {
+//  Pattern pattern =
+//      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+//  RegExp regex = new RegExp(pattern);
+//  if (!regex.hasMatch(value))
+//    return 'Enter Valid Email';
+//  else
+//    return null;
+//}

@@ -3,14 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class modify extends StatefulWidget {
+class usersLiveMenu extends StatefulWidget {
   @override
-  _modifyState createState() => _modifyState();
+  _usersLiveMenuState createState() => _usersLiveMenuState();
 }
 
-class _modifyState extends State<modify> {
-  String Location, Remark;
-
+class _usersLiveMenuState extends State<usersLiveMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +17,7 @@ class _modifyState extends State<modify> {
         centerTitle: true,
         backgroundColor: Colors.grey,
         title: Text(
-          'M O D I F Y',
+          'L I V E',
           style: GoogleFonts.francoisOne(
             fontSize: 40,
           ),
@@ -32,15 +30,15 @@ class _modifyState extends State<modify> {
               SizedBox(
                 height: 200,
               ),
-              modifyOptions(context, 'A R E A S', 'marea'),
+              LiveUpdatesMenuOptions(context, 'A R E A S', 'area'),
               SizedBox(
                 height: 50,
               ),
-              modifyOptions(context, 'F L O O R S', 'mfloor'),
+              LiveUpdatesMenuOptions(context, 'F L O O R S', 'floor'),
               SizedBox(
                 height: 50,
               ),
-              modifyOptions(context, 'D U S T B I N S', 'mdustbin'),
+              LiveUpdatesMenuOptions(context, 'D U S T B I N S', 'dustbin'),
               SizedBox(
                 height: 150,
               ),
@@ -49,12 +47,15 @@ class _modifyState extends State<modify> {
                 width: 150,
                 child: FloatingActionButton.extended(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/MainMenu');
+                    Navigator.pop(context);
                   },
                   backgroundColor: Colors.grey[800],
                   icon: Icon(Icons.exit_to_app),
                   label: Text('GO BACK',
-                      style: GoogleFonts.francoisOne(fontSize: 20,)),),
+                      style: GoogleFonts.francoisOne(
+                        fontSize: 20,
+                      )),
+                ),
               )
             ],
           ),
@@ -63,14 +64,15 @@ class _modifyState extends State<modify> {
     );
   }
 
-  Container modifyOptions(BuildContext context, String Title, String GotoPath) {
+  Container LiveUpdatesMenuOptions(
+      BuildContext context, String Title, String GotoPath) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
-        border: Border.all(width: 5, color: Colors.grey[400]),
+        border: Border.all(width: 5, color: Colors.black26),
         borderRadius: BorderRadius.all(
             Radius.circular(25.0) //         <--- border radius here
-        ),
+            ),
       ),
       child: RawMaterialButton(
         onPressed: () {
@@ -78,7 +80,7 @@ class _modifyState extends State<modify> {
         },
         child: Text(
           ' $Title ',
-          style: GoogleFonts.francoisOne(fontSize: 30, color: Colors.grey[600]),
+          style: GoogleFonts.francoisOne(fontSize: 30, color: Colors.black54),
         ),
       ),
     );

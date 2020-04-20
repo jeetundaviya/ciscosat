@@ -1,10 +1,16 @@
 import 'package:ciscosat/AddDriver.dart';
 import 'package:ciscosat/AssignDriver.dart';
 import 'package:ciscosat/Locate_routes_onmaps.dart';
+import 'package:ciscosat/UserDuties.dart';
 import 'package:ciscosat/complains.dart';
 import 'package:ciscosat/modify_floor.dart';
 import 'package:ciscosat/reports.dart';
+import 'package:ciscosat/userAssignedWork.dart';
+import 'package:ciscosat/userMenu.dart';
+import 'package:ciscosat/usersLiveMenu.dart';
 import 'package:flutter/material.dart';
+import 'UserUpdateWork.dart';
+import 'UsersRoutes.dart';
 import 'modify_dustbin.dart';
 import 'start_page.dart';
 import 'login_page.dart';
@@ -36,9 +42,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        //        '/':(context)=>SplashScreen(),
-        '/': (context) => MainMenu(),
-        '/menu': (context) => MainMenu(),
+        // '/':(context)=>SplashScreen(),
+        '/': (context) => UserUpdateWork(),
+        '/userupdateWork': (context) => UserUpdateWork(),
+        '/usermaproute': (context) => UsersMapRoute(),
+        '/userassignedWork': (context) => usersAssignedWork(),
+        '/userlivemenu': (context) => usersLiveMenu(),
+        '/userduties': (context) => UserDuties(),
+        '/userMenu': (context) => userMenu(),
+        '/MainMenu': (context) => MainMenu(),
         '/login': (context) => login(),
         '/remarks': (context) => remarks(),
         '/reports': (context) => Reports(),

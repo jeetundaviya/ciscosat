@@ -79,32 +79,35 @@ class _supportState extends State<support> {
   Column support(Icon icon, String location, String Title, String Desc) {
     return Column(
       children: <Widget>[
-        FloatingActionButton.extended(
-          heroTag: null,
-          icon: icon,
-          onPressed: () {
-            Alert(
-              context: context,
-              title: Title,
-              desc: Desc,
-              buttons: [
-                DialogButton(
-                    child: Text(
-                      'O K',
-                      style: GoogleFonts.francoisOne(
-                          fontSize: 30, color: Colors.white),
-                    ),
-                    color: Colors.grey,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    })
-              ],
-            ).show();
-          },
-          backgroundColor: Colors.grey,
-          label: Text(
-            location,
-            style: GoogleFonts.francoisOne(fontSize: 30),
+        Container(
+          width: 300,
+          child: FloatingActionButton.extended(
+            heroTag: null,
+            icon: icon,
+            onPressed: () {
+              Alert(
+                context: context,
+                title: Title,
+                desc: Desc,
+                buttons: [
+                  DialogButton(
+                      child: Text(
+                        'O K',
+                        style: GoogleFonts.francoisOne(
+                            fontSize: 30, color: Colors.white),
+                      ),
+                      color: Colors.grey,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      })
+                ],
+              ).show();
+            },
+            backgroundColor: Colors.grey,
+            label: Text(
+              location,
+              style: GoogleFonts.francoisOne(fontSize: 30),
+            ),
           ),
         ),
 //        Card(

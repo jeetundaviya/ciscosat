@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class modify extends StatefulWidget {
+class userMenu extends StatefulWidget {
   @override
-  _modifyState createState() => _modifyState();
+  _userMenuState createState() => _userMenuState();
 }
 
-class _modifyState extends State<modify> {
+class _userMenuState extends State<userMenu> {
   String Location, Remark;
 
   @override
@@ -19,7 +20,7 @@ class _modifyState extends State<modify> {
         centerTitle: true,
         backgroundColor: Colors.grey,
         title: Text(
-          'M O D I F Y',
+          'M E N U',
           style: GoogleFonts.francoisOne(
             fontSize: 40,
           ),
@@ -32,15 +33,15 @@ class _modifyState extends State<modify> {
               SizedBox(
                 height: 200,
               ),
-              modifyOptions(context, 'A R E A S', 'marea'),
+              userOption(context, 'M Y  D U T Y', 'userduties'),
               SizedBox(
                 height: 50,
               ),
-              modifyOptions(context, 'F L O O R S', 'mfloor'),
+              userOption(context, 'R E M A R K S', 'remarks'),
               SizedBox(
                 height: 50,
               ),
-              modifyOptions(context, 'D U S T B I N S', 'mdustbin'),
+              userOption(context, 'S U P P O R T', 'support'),
               SizedBox(
                 height: 150,
               ),
@@ -48,13 +49,17 @@ class _modifyState extends State<modify> {
                 height: 50,
                 width: 150,
                 child: FloatingActionButton.extended(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/MainMenu');
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.pop(context);
                   },
                   backgroundColor: Colors.grey[800],
                   icon: Icon(Icons.exit_to_app),
-                  label: Text('GO BACK',
-                      style: GoogleFonts.francoisOne(fontSize: 20,)),),
+                  label: Text('L O G O U T',
+                      style: GoogleFonts.francoisOne(
+                        fontSize: 20,
+                      )),
+                ),
               )
             ],
           ),
@@ -63,14 +68,14 @@ class _modifyState extends State<modify> {
     );
   }
 
-  Container modifyOptions(BuildContext context, String Title, String GotoPath) {
+  Container userOption(BuildContext context, String Title, String GotoPath) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
         border: Border.all(width: 5, color: Colors.grey[400]),
         borderRadius: BorderRadius.all(
             Radius.circular(25.0) //         <--- border radius here
-        ),
+            ),
       ),
       child: RawMaterialButton(
         onPressed: () {

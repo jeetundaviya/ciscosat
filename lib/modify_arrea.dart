@@ -117,7 +117,7 @@ class _modifyAreaState extends State<modifyArea> {
                 heroTag: null,
                 backgroundColor: Colors.grey[800],
                 onPressed: () async {
-                  print('$_areano::$_areavalue');
+                  // print('$_areano::$_areavalue');
                   await Firestore.instance
                       .collection('AREAS')
                       .document('$_areano')

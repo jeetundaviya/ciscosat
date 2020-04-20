@@ -1,15 +1,15 @@
-import 'package:ciscosat/remarks.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AssignDrivers extends StatefulWidget {
+class usersAssignedWork extends StatefulWidget {
   @override
-  _AssignDriversState createState() => _AssignDriversState();
+  _usersAssignedWorkState createState() => _usersAssignedWorkState();
 }
 
-class _AssignDriversState extends State<AssignDrivers> {
-  String driverid, RouteNo;
+class _usersAssignedWorkState extends State<usersAssignedWork> {
+  String RouteNo;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class _AssignDriversState extends State<AssignDrivers> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.grey,
-        title: Text('A S S I G N',
+        title: Text('ASSIGNED WORK',
             style: GoogleFonts.francoisOne(
               fontSize: 40,
             )),
@@ -27,24 +27,25 @@ class _AssignDriversState extends State<AssignDrivers> {
         child: Column(
           children: <Widget>[
             StreamBuilder<QuerySnapshot>(
-                stream: Firestore.instance.collection('DRIVERS').snapshots(),
-                builder: (context, drivers) {
-                  if (!drivers.hasData) {
+                stream:
+                    Firestore.instance.collection('ASSIGNEDWORK').snapshots(),
+                builder: (context, assignedWork) {
+                  if (!assignedWork.hasData) {
                     return Center(child: CircularProgressIndicator());
                   }
 
                   List<Column> RemarksList = [];
 
-                  for (var user in drivers.data.documents) {
+                  for (var user in assignedWork.data.documents) {
                     print(user.documentID);
-                    String DriverDetails = user.data['DDETAILS'].toString();
-                    //String TempRemark2 = user.data['Remark2'].toString();
-                    //String TempRemark3 = user.data['Remark3'].toString();
-                    String DriverID = user.data['IDNO'].toString();
-                    //String TempField2 = user.data['Field2'].toString();
-                    //String TempField3 = user.data['Field3'].toString();
+                    String RouteNo = user.data['ROUTENO'].toString();
+//                    String TempRemark2 = user.data['Remark2'].toString();
+//                    String TempRemark3 = user.data['Remark3'].toString();
+                    String ID = user.data['IDNO'].toString();
+//                    String TempField2 = user.data['Field2'].toString();
+//                    String TempField3 = user.data['Field3'].toString();
 
-                    Column remarker = Column(
+                    Column complainer = Column(
                       children: <Widget>[
                         SizedBox(
                           height: 30,
@@ -69,7 +70,7 @@ class _AssignDriversState extends State<AssignDrivers> {
                         //SizedBox(height: 20,),
                       ],
                     );
-                    Column fieldbutton1 = Column(
+                    Column Complains = Column(
                       children: <Widget>[
                         Container(
                           height: 100,
@@ -77,7 +78,7 @@ class _AssignDriversState extends State<AssignDrivers> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(30, 5, 0, 0),
                             child: Text(
-                              DriverID + '  :  ' + DriverDetails,
+                              ID + '  :  ' + RouteNo,
                               style: GoogleFonts.titilliumWeb(
                                   color: Colors.white, fontSize: 20),
                             ),
@@ -131,12 +132,12 @@ class _AssignDriversState extends State<AssignDrivers> {
 //                                Text fieldbutton2 = Text(TempField2+':'+TempRemark2);
 //                                Text fieldbutton3 = Text(TempField3+':'+TempRemark3);
 
-                    RemarksList.add(remarker);
-                    RemarksList.add(fieldbutton1);
+                    RemarksList.add(complainer);
+                    RemarksList.add(Complains);
 //                                RemarksList.add(remarkbutton1);
-                    //   RemarksList.add(fieldbutton2);
+                    //                   RemarksList.add(fieldbutton2);
 //                                RemarksList.add(remarkbutton2);
-                    // RemarksList.add(fieldbutton3);
+                    //                 RemarksList.add(fieldbutton3);
 //                                RemarksList.add(remarkbutton3);
                   }
 
@@ -144,47 +145,6 @@ class _AssignDriversState extends State<AssignDrivers> {
 
                   // return Screen(AreaList,'A R E A S');
                 }),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 370,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[400],
-                    borderRadius: new BorderRadius.only(
-                        topLeft: const Radius.circular(30.0),
-                        topRight: const Radius.circular(30.0),
-                        bottomLeft: const Radius.circular(30.0),
-                        bottomRight: const Radius.circular(30.0)),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 0),
-                      ),
-                      hintText: 'Route No',
-                      // helperText: 'Keep it short, this is just a demo.',
-                      labelText: 'Route No',
-
-                      prefixIcon: Icon(
-                        Icons.account_circle,
-                        color: Colors.white,
-                        size: 50,
-                      ),
-                      //prefixText: ' ',
-                      //suffixText: 'USD',
-                      //suffixStyle: const TextStyle(color: Colors.green)
-                    ),
-                    onChanged: (value) {
-                      RouteNo = value;
-                      print(RouteNo);
-                    },
-                    //autovalidate: true,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -203,12 +163,12 @@ class _AssignDriversState extends State<AssignDrivers> {
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white, width: 0),
                       ),
-                      hintText: 'Id No',
+                      hintText: 'Route No',
                       // helperText: 'Keep it short, this is just a demo.',
-                      labelText: 'Id No',
+                      labelText: 'Route No',
 
                       prefixIcon: Icon(
-                        Icons.account_circle,
+                        Icons.close,
                         color: Colors.white,
                         size: 50,
                       ),
@@ -217,8 +177,8 @@ class _AssignDriversState extends State<AssignDrivers> {
                       //suffixStyle: const TextStyle(color: Colors.green)
                     ),
                     onChanged: (value) {
-                      driverid = value;
-                      print(driverid);
+                      RouteNo = value;
+                      print(RouteNo);
                     },
                     //autovalidate: true,
                   ),
@@ -234,19 +194,25 @@ class _AssignDriversState extends State<AssignDrivers> {
                       // heroTag: null,
                       backgroundColor: Colors.grey[800],
                       onPressed: () async {
-                        print('$driverid');
-                        await Firestore.instance
-                            .collection('ASSIGNEDWORK')
-                            .document('$driverid')
-                            .setData({
-                          'IDNO': '$driverid',
-                          'ROUTENO': '$RouteNo',
+                        //print('$_areano::$_areavalue');
+                        var user = await FirebaseAuth.instance.currentUser();
+                        String useremail = user.email;
+                        String userid = user.uid;
 
+                        Firestore.instance
+                            .collection('ONGOINGWORK')
+                            .document('$useremail')
+                            .setData({
+                          'USID': userid,
+                          'USEREMAIL': useremail,
+                          'ROUTENO': RouteNo,
                         }).catchError((e) {
                           print(e);
                         });
+
+                        Navigator.pushNamed(context, '/usermaproute');
                       },
-                      child: Icon(Icons.airport_shuttle),
+                      child: Icon(Icons.my_location),
 //                      label: Text(
 //                        ' D E L E T E ',
 //                        style: GoogleFonts.francoisOne(fontSize: 20),
@@ -265,7 +231,9 @@ class _AssignDriversState extends State<AssignDrivers> {
     );
   }
 
-  Expanded Screen(List<Column> remark) {
+  Expanded Screen(
+    List<Column> remark,
+  ) {
     return Expanded(
       child: Scaffold(
         backgroundColor: Colors.white,

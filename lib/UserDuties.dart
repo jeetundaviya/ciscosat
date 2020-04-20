@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class modify extends StatefulWidget {
+class UserDuties extends StatefulWidget {
   @override
-  _modifyState createState() => _modifyState();
+  _UserDutiesState createState() => _UserDutiesState();
 }
 
-class _modifyState extends State<modify> {
-  String Location, Remark;
-
+class _UserDutiesState extends State<UserDuties> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +16,7 @@ class _modifyState extends State<modify> {
         centerTitle: true,
         backgroundColor: Colors.grey,
         title: Text(
-          'M O D I F Y',
+          'M Y  D U T Y',
           style: GoogleFonts.francoisOne(
             fontSize: 40,
           ),
@@ -32,15 +29,15 @@ class _modifyState extends State<modify> {
               SizedBox(
                 height: 200,
               ),
-              modifyOptions(context, 'A R E A S', 'marea'),
+              mydutiesoptions(context, 'ASSIGNED WORK', 'userassignedWork'),
               SizedBox(
                 height: 50,
               ),
-              modifyOptions(context, 'F L O O R S', 'mfloor'),
+              mydutiesoptions(context, 'UPDATE WORK', 'userupdateWork'),
               SizedBox(
                 height: 50,
               ),
-              modifyOptions(context, 'D U S T B I N S', 'mdustbin'),
+              mydutiesoptions(context, 'CHECK LIVE UPDATES', 'userlivemenu'),
               SizedBox(
                 height: 150,
               ),
@@ -54,7 +51,10 @@ class _modifyState extends State<modify> {
                   backgroundColor: Colors.grey[800],
                   icon: Icon(Icons.exit_to_app),
                   label: Text('GO BACK',
-                      style: GoogleFonts.francoisOne(fontSize: 20,)),),
+                      style: GoogleFonts.francoisOne(
+                        fontSize: 20,
+                      )),
+                ),
               )
             ],
           ),
@@ -63,14 +63,15 @@ class _modifyState extends State<modify> {
     );
   }
 
-  Container modifyOptions(BuildContext context, String Title, String GotoPath) {
+  Container mydutiesoptions(
+      BuildContext context, String Title, String GotoPath) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
         border: Border.all(width: 5, color: Colors.grey[400]),
         borderRadius: BorderRadius.all(
             Radius.circular(25.0) //         <--- border radius here
-        ),
+            ),
       ),
       child: RawMaterialButton(
         onPressed: () {
